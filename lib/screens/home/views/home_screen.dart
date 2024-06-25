@@ -29,11 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetExpensesBloc, GetExpensesState>(
-      builder: (context, state) {
-        if(state is GetExpensesSuccess) {
-          return Scaffold(
+        builder: (context, state) {
+      if (state is GetExpensesSuccess) {
+        return Scaffold(
             bottomNavigationBar: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(30)),
               child: BottomNavigationBar(
                   onTap: (value) {
                     setState(() {
@@ -43,9 +44,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   elevation: 3,
-                  items: [BottomNavigationBarItem(icon: Icon(CupertinoIcons.home, color: index == 0 ? selectedItem : unselectedItem), label: 'Home'), BottomNavigationBarItem(icon: Icon(CupertinoIcons.graph_square_fill, color: index == 1 ? selectedItem : unselectedItem), label: 'Stats')]),
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Icon(CupertinoIcons.home,
+                            color: index == 0 ? selectedItem : unselectedItem),
+                        label: 'Home'),
+                    BottomNavigationBarItem(
+                        icon: Icon(CupertinoIcons.graph_square_fill,
+                            color: index == 1 ? selectedItem : unselectedItem),
+                        label: 'Stats')
+                  ]),
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
                 Expense? newExpense = await Navigator.push(
@@ -54,13 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (BuildContext context) => MultiBlocProvider(
                       providers: [
                         BlocProvider(
-                          create: (context) => CreateCategoryBloc(FirebaseExpenseRepo()),
+                          create: (context) =>
+                              CreateCategoryBloc(FirebaseExpenseRepo()),
                         ),
                         BlocProvider(
-                          create: (context) => GetCategoriesBloc(FirebaseExpenseRepo())..add(GetCategories()),
+                          create: (context) =>
+                              GetCategoriesBloc(FirebaseExpenseRepo())
+                                ..add(GetCategories()),
                         ),
                         BlocProvider(
-                          create: (context) => CreateExpenseBloc(FirebaseExpenseRepo()),
+                          create: (context) =>
+                              CreateExpenseBloc(FirebaseExpenseRepo()),
                         ),
                       ],
                       child: const AddExpense(),
@@ -68,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
 
-                if(newExpense != null) {
+                if (newExpense != null) {
                   setState(() {
                     state.expenses.insert(0, newExpense);
                   });
@@ -91,17 +106,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(CupertinoIcons.add),
               ),
             ),
-            body: index == 0 
-              ? MainScreen(state.expenses) 
-              : const StatScreen());
-        } else {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
+            body: index == 0 ? MainScreen(state.expenses) : const Center(child: CircularProgressIndicator(),) );
+            // body: index == 0 ? MainScreen(state.expenses) : const StatScreen());
+      } else {
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       }
-    );
+    });
   }
 }
