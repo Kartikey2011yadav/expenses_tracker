@@ -12,6 +12,6 @@ void main() async {
   await Firebase.initializeApp(
     options: const FirebaseOptions(apiKey: API_KEY, appId: APP_ID, messagingSenderId: MS_ID, projectId: "expenses-tracker-main")
   );
-  Bloc.observer = SimpleBlocObserver();
+  // Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }

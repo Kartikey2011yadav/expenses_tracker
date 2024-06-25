@@ -4,9 +4,11 @@ import 'dart:math';
 import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/data.dart';
+import '../../../theme/theme_bloc.dart';
 
 class MainScreen extends StatelessWidget {
   final List<Expense> expenses;
@@ -14,7 +16,9 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    const themeBloc = BlocProvider.of<ThemeBloc>;
+    return Container(
+      margin: const EdgeInsets.only(top: 50),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
         child: Column(
@@ -37,7 +41,7 @@ class MainScreen extends StatelessWidget {
                         ),
                         Icon(
                           CupertinoIcons.person_fill,
-                          color: Colors.yellow[800],
+                          color: Colors.blue[900],
                         )
                       ],
                     ),
@@ -65,7 +69,10 @@ class MainScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.settings))
+                IconButton(
+                    // onPressed: () => themeBloc.add(ThemeEvent.toggleDark),
+                    onPressed: () => {},
+                    icon: const Icon(CupertinoIcons.moon_fill))
               ],
             ),
             const SizedBox(height: 20,),
@@ -103,7 +110,7 @@ class MainScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    '\$ 4800.00',
+                    'Rs. 4800.00',
                     style: TextStyle(
                       fontSize: 40,
                       color: Colors.white,
@@ -145,7 +152,7 @@ class MainScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '€ 2500.00',
+                                  'Rs. 2500.00',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.white,
@@ -186,7 +193,7 @@ class MainScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '€ 800.00',
+                                  'Rs. 800.00',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.white,
@@ -217,7 +224,7 @@ class MainScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    
+
                   },
                   child: Text(
                     'View All',
@@ -282,7 +289,7 @@ class MainScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "\$${expenses[i].amount}.00",
+                                  "Rs.${expenses[i].amount}.00",
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Theme.of(context).colorScheme.onBackground,

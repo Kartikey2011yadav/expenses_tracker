@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../theme/theme_bloc.dart';
 import '../../add_expense/blocs/create_expense_bloc/create_expense_bloc.dart';
 import '../../stats/stats.dart';
 
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
   late Color selectedItem = Colors.blue;
   Color unselectedItem = Colors.grey;
+
 
   @override
   Widget build(BuildContext context) {
