@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (context) => GetExpensesBloc(FirebaseExpenseRepo())..add(GetExpenses())),
-        BlocProvider(create: (context) => ThemeBloc(ThemeState.lightTheme))
+        BlocProvider(create: (context) => ThemeBloc(ThemeState.lightTheme, false))
       ],
       child: const MyAppView(),
 

@@ -8,7 +8,6 @@ class MyAppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const themeBloc = BlocProvider.of<ThemeBloc>;
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return MaterialApp(

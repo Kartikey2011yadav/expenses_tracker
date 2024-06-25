@@ -75,11 +75,11 @@ class _AddExpenseState extends State<AddExpense> {
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: Colors.white,
+                              fillColor: Theme.of(context).colorScheme.primaryContainer,
                               prefixIcon: const Icon(
                                 FontAwesomeIcons.rupeeSign,
                                 size: 16,
-                                color: Colors.grey,
+                                color: Colors.black,
                               ),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
                             ),
@@ -95,12 +95,12 @@ class _AddExpenseState extends State<AddExpense> {
                           onTap: () {},
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: expense.category == Category.empty ? Colors.white : Color(expense.category.color),
+                            fillColor: expense.category == Category.empty ? Theme.of(context).colorScheme.primaryContainer : Color(expense.category.color),
                             prefixIcon: expense.category == Category.empty
                               ? const Icon(
                                   FontAwesomeIcons.list,
                                   size: 16,
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                 )
                               : Image.asset(
                                   'assets/${expense.category.icon}.png',
@@ -116,7 +116,7 @@ class _AddExpenseState extends State<AddExpense> {
                               icon: const Icon(
                                 FontAwesomeIcons.plus,
                                 size: 16,
-                                color: Colors.grey,
+                                color: Colors.black,
                               )
                             ),
                             hintText: 'Category',
@@ -126,8 +126,8 @@ class _AddExpenseState extends State<AddExpense> {
                         Container(
                           height: 200,
                           width: MediaQuery.of(context).size.width,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primaryContainer,
                             borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
                           ),
                           child: Padding(
@@ -176,11 +176,11 @@ class _AddExpenseState extends State<AddExpense> {
                           },
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Theme.of(context).colorScheme.primaryContainer,
                             prefixIcon: const Icon(
                               FontAwesomeIcons.calendar,
                               size: 16,
-                              color: Colors.grey,
+                              color: Colors.black,
                             ),
                             hintText: 'Date',
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
@@ -202,7 +202,9 @@ class _AddExpenseState extends State<AddExpense> {
 
                                   context.read<CreateExpenseBloc>().add(CreateExpense(expense));
                                 },
-                                style: TextButton.styleFrom(backgroundColor: Colors.black, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                style: TextButton.styleFrom(
+                                    backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                                 child: const Text(
                                   'Save',
                                   style: TextStyle(fontSize: 22, color: Colors.white),

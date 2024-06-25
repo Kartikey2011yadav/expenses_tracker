@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   late Color selectedItem = Colors.blue;
   Color unselectedItem = Colors.grey;
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetExpensesBloc, GetExpensesState>(

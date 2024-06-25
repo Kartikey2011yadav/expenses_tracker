@@ -5,14 +5,18 @@ part 'theme_event.dart';
 part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc(themeEvent) : super(themeEvent){
-    on<ThemeEvent>((event, emit)  {
+  static bool isDark = false;
+  ThemeBloc(themeEvent, isDark) : super(themeEvent){
+    on<ToggleDark>((event, emit)  {
       emit(ThemeState.darkTheme);
-    } );
+      isDark = true;
+    });
+    on<ToggleLight>((event, emit)  {
+      emit(ThemeState.lightTheme);
+      isDark = false;
+    });
   }
-
-
-  }
+}
 
 
 

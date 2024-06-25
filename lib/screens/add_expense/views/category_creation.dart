@@ -48,7 +48,7 @@ Future getCategoryCreation(BuildContext context) {
                       decoration: InputDecoration(
                         isDense: true,
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Theme.of(context).colorScheme.secondary,
                         hintText: 'Name',
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                       ),
@@ -72,7 +72,7 @@ Future getCategoryCreation(BuildContext context) {
                           CupertinoIcons.chevron_down,
                           size: 12,
                         ),
-                        fillColor: Colors.white,
+                        fillColor: Theme.of(context).colorScheme.secondary,
                         hintText: 'Icon',
                         border: OutlineInputBorder(borderRadius: isExpended ? const BorderRadius.vertical(top: Radius.circular(12)) : BorderRadius.circular(12), borderSide: BorderSide.none),
                       ),
@@ -81,7 +81,7 @@ Future getCategoryCreation(BuildContext context) {
                       ? Container(
                           width: MediaQuery.of(context).size.width,
                           height: 200,
-                          decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(bottom: Radius.circular(12))),
+                          decoration:  BoxDecoration(color: Theme.of(context).colorScheme.secondary, borderRadius: BorderRadius.vertical(bottom: Radius.circular(12))),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: GridView.builder(
@@ -153,6 +153,9 @@ Future getCategoryCreation(BuildContext context) {
                         filled: true,
                         fillColor: categoryColor,
                         hintText: 'Color',
+                        hintStyle: const TextStyle(
+                          color: Colors.black
+                        ),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                       ),
                     ),

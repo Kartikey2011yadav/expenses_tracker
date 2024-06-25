@@ -16,7 +16,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const themeBloc = BlocProvider.of<ThemeBloc>;
     return Container(
       margin: const EdgeInsets.only(top: 50),
       child: Padding(
@@ -62,19 +61,23 @@ class MainScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.onBackground
+                            color: Theme.of(context).colorScheme.primary
                           ),
                         )
                       ],
                     ),
                   ],
                 ),
-                IconButton(
-                    onPressed: () {
-                      context.read<ThemeBloc>().add(ThemeEvent.toggleDark);
-                      // BlocProvider.of<ThemeBloc>(context).dispatch()
-                    },
-                    icon: const Icon(CupertinoIcons.moon_fill))
+                  IconButton(
+                      onPressed: () {
+                        if(!ThemeBloc.isDark) {
+                          context.read<ThemeBloc>().add(ToggleDark());
+                        }else{
+                          context.read<ThemeBloc>().add(ToggleLight());
+                        }
+                      },
+                      icon: const Icon(CupertinoIcons.moon_fill)
+                  )
               ],
             ),
             const SizedBox(height: 20,),
@@ -94,7 +97,7 @@ class MainScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 4,
-                    color: Colors.grey.shade300,
+                    color: Theme.of(context).colorScheme.background,
                     offset: const Offset(5, 5)
                   )
                 ]
@@ -135,7 +138,7 @@ class MainScreen extends StatelessWidget {
                               ),
                               child: const Center(
                                 child: Icon(
-                                  CupertinoIcons.arrow_down,
+                                  CupertinoIcons.arrow_up,
                                   size: 12,
                                   color: Colors.greenAccent,
                                 )
@@ -220,7 +223,8 @@ class MainScreen extends StatelessWidget {
                   'Transactions',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Theme.of(context).colorScheme.onBackground,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    //   color: Colors.amberAccent,
                     fontWeight: FontWeight.bold
                   ),
                 ),
@@ -248,7 +252,7 @@ class MainScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(12)
                       ),
                       child: Padding(

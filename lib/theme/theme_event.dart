@@ -1,7 +1,7 @@
 part of 'theme_bloc.dart';
 
-// class toggleDark extends ThemeEvent {}
-// class toggleLight extends ThemeEvent {}
-//
-// class ThemeEvent{}
-enum ThemeEvent {toggleDark, toggleLight}
+final class ToggleDark extends ThemeEvent {}
+final class ToggleLight extends ThemeEvent {}
+
+sealed class ThemeEvent{}
+// enum ThemeEvent {toggleDark, toggleLight}
