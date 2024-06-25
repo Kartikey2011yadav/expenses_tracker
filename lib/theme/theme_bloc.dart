@@ -9,11 +9,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc(themeEvent, isDark) : super(themeEvent){
     on<ToggleDark>((event, emit)  {
       emit(ThemeState.darkTheme);
-      isDark = true;
     });
     on<ToggleLight>((event, emit)  {
       emit(ThemeState.lightTheme);
-      isDark = false;
     });
   }
 }

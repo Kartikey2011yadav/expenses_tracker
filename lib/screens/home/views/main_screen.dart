@@ -72,8 +72,10 @@ class MainScreen extends StatelessWidget {
                       onPressed: () {
                         if(!ThemeBloc.isDark) {
                           context.read<ThemeBloc>().add(ToggleDark());
+                          ThemeBloc.isDark = true;
                         }else{
                           context.read<ThemeBloc>().add(ToggleLight());
+                          ThemeBloc.isDark = false;
                         }
                       },
                       icon: const Icon(CupertinoIcons.moon_fill)
