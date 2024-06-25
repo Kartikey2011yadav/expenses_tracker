@@ -70,8 +70,10 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                    // onPressed: () => themeBloc.add(ThemeEvent.toggleDark),
-                    onPressed: () => {},
+                    onPressed: () {
+                      context.read<ThemeBloc>().add(ThemeEvent.toggleDark);
+                      // BlocProvider.of<ThemeBloc>(context).dispatch()
+                    },
                     icon: const Icon(CupertinoIcons.moon_fill))
               ],
             ),
